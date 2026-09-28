@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>앱 리뷰 크롤러</title>
+<link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+<header>
+  <h1>앱 리뷰 크롤러</h1>
+  <p>구글 플레이 스토어 &amp; 애플 앱스토어에서 앱 이름과 기간으로 리뷰·평점을 수집합니다.</p>
+</header>
+
+<main>
+  <section class="card">
+    <h2>1. 앱 검색</h2>
+    <div class="row">
+      <div class="field">
+        <label>검색할 스토어</label>
+        <div class="store-toggle">
+          <label><input type="checkbox" id="store-google" checked /> Google Play</label>
+          <label><input type="checkbox" id="store-apple" checked /> App Store</label>
+        </div>
+      </div>
+      <div class="field">
+        <label for="app-name">앱 이름</label>
+        <input type="text" id="app-name" placeholder="예: 카카오톡" />
+      </div>
+      <div class="field">
+        <label for="country">국가 코드</label>
+        <input type="text" id="country" list="country-list" value="kr" />
+        <datalist id="country-list">
+          <option value="kr">대한민국</option>
+          <option value="us">미국</option>
+          <option value="jp">일본</option>
+          <option value="gb">영국</option>
+          <option value="cn">중국</option>
+          <option value="de">독일</option>
+        </datalist>
+      </div>
+      <div class="field">
+        <button id="btn-search">검색</button>
+      </div>
+    </div>
+
+    <div class="search-results" id="search-results"></div>
+
+    <div id="selected-apps">
+      <h3 style="font-size:13px;color:#6b7280;margin:16px 0 4px;">선택된 앱</h3>
+      <div class="chip-list" id="chip-list"></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>2. 기간 설정 &amp; 크롤링</h2>
+    <div class="row">
+      <div class="field">
+        <label for="start-date">시작일</label>
+        <input type="date" id="start-date" />
+      </div>
+      <div class="field">
+        <label for="end-date">종료일</label>
+        <input type="date" id="end-date" />
+      </div>
+      <div class="field">
+        <button id="btn-crawl" disabled>리뷰 가져오기</button>
+      </div>
+    </div>
+    <p id="status-area"></p>
+  </section>
+
+  <section class="card hidden" id="results-section">
+    <div class="result-header">
+      <h2>3. 결과</h2>
+      <div class="export-buttons">
+        <button class="secondary" id="btn-export-csv">CSV 다운로드</button>
+        <button class="secondary" id="btn-export-xlsx">Excel 다운로드</button>
+      </div>
+    </div>
+    <div id="results-container"></div>
+  </section>
+</main>
+
+<footer>
+  Google Play / App Store 공개 리뷰 데이터를 조회합니다. App Store는 정책상 최근 리뷰 약 500건까지만 제공됩니다.
+</footer>
+
+<script src="/static/app.js"></script>
+</body>
+</html>
